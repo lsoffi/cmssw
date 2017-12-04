@@ -14,8 +14,8 @@ from RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_tools \
 #       https://twiki.cern.ch/twiki/bin/view/CMS/CutBasedElectronIdentificationRun2
 #       (where they may not stay, if a newer version of cuts becomes available for these
 #        conditions)
-# See also the presentation explaining these working points (this will not change):
-# https://indico.cern.ch/event/662751/contributions/2778044/attachments/1562080/2459801/171121_egamma_workshop.pdf
+# See also the presentation explaining these working points:
+#        https://indico.cern.ch/event/662751/contributions/2778044/attachments/1562080/2459801/171121_egamma_workshop.pdf
 #
 # First, define cut values
 #
@@ -135,7 +135,7 @@ WP_Tight_EE = EleWorkingPoint_V3(
 # Second, define what effective areas to use for pile-up correction
 isoInputs = IsolationCutInputs_V2(
     # phoIsolationEffAreas
-    "RecoEgamma/ElectronIdentification/data/Fall17/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_92X.txt"
+    "RecoEgamma/ElectronIdentification/data/Summer16/effAreaElectrons_cone03_pfNeuHadronsAndPhotons_80X.txt"
 )
 
 
