@@ -22,7 +22,7 @@ from RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_tools \
 
 # Veto working point Barrel and Endcap
 idName = "cutBasedElectronID-Fall17-92X-V1-Preliminary-veto"
-WP_Veto_EB = EleWorkingPoint_V3(
+WP_Veto_EB = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0128  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00523 , # dEtaInSeedCut
@@ -37,7 +37,7 @@ WP_Veto_EB = EleWorkingPoint_V3(
     missingHitsCut                 = 2          # missingHitsCut
     )
 
-WP_Veto_EE = EleWorkingPoint_V3(
+WP_Veto_EE = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0445  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00984 , # dEtaInSeedCut
@@ -54,7 +54,7 @@ WP_Veto_EE = EleWorkingPoint_V3(
 
 # Loose working point Barrel and Endcap
 idName = "cutBasedElectronID-Fall17-92X-V1-Preliminary-loose"
-WP_Loose_EB = EleWorkingPoint_V3(
+WP_Loose_EB = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0105  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00387 , # dEtaInSeedCut
@@ -69,7 +69,7 @@ WP_Loose_EB = EleWorkingPoint_V3(
     missingHitsCut                 = 1          # missingHitsCut
     )
 
-WP_Loose_EE = EleWorkingPoint_V3(
+WP_Loose_EE = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0356  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.0072 , # dEtaInSeedCut
@@ -87,7 +87,7 @@ WP_Loose_EE = EleWorkingPoint_V3(
 
 # Medium working point Barrel and Endcap
 idName = "cutBasedElectronID-Fall17-92X-V1-Preliminary-medium"
-WP_Medium_EB = EleWorkingPoint_V3(
+WP_Medium_EB = EleWorkingPoint_V4(
     idName                         = idName , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0105, # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00365, # dEtaInSeedCut
@@ -102,7 +102,7 @@ WP_Medium_EB = EleWorkingPoint_V3(
     missingHitsCut                 = 1          # missingHitsCut
     )
 
-WP_Medium_EE = EleWorkingPoint_V3(
+WP_Medium_EE = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0309  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00625 , # dEtaInSeedCut
@@ -119,7 +119,7 @@ WP_Medium_EE = EleWorkingPoint_V3(
 
 # Tight working point Barrel and Endcap
 idName = "cutBasedElectronID-Fall17-92X-V1-Preliminary-tight"
-WP_Tight_EB = EleWorkingPoint_V3(
+WP_Tight_EB = EleWorkingPoint_V4(
     idName                         = idName    , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0104   , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00353   , # dEtaInSeedCut
@@ -134,7 +134,7 @@ WP_Tight_EB = EleWorkingPoint_V3(
     missingHitsCut                 = 1          # missingHitsCut
     )
 
-WP_Tight_EE = EleWorkingPoint_V3(
+WP_Tight_EE = EleWorkingPoint_V4(
     idName                         = idName  , # idName
     full5x5_sigmaIEtaIEtaCut       = 0.0305  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00567 , # dEtaInSeedCut
