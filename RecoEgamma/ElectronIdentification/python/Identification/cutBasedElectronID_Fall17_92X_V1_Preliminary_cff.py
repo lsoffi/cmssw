@@ -4,9 +4,9 @@ import FWCore.ParameterSet.Config as cms
 
 # Common functions and classes for ID definition are imported here:
 from RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_tools \
-    import ( EleWorkingPoint_V3,
+    import ( EleWorkingPoint_V4,
              IsolationCutInputs_V2,
-             configureVIDCutBasedEleID_V3 )
+             configureVIDCutBasedEleID_V4 )
 
 #
 # The ID cuts below are optimized IDs on Spring16 simulation with 80X-based production
@@ -160,10 +160,10 @@ isoInputs = IsolationCutInputs_V2(
 # Set up VID configuration for all cuts and working points
 #
 
-cutBasedElectronID_Fall17_92X_V1_Preliminary_veto = configureVIDCutBasedEleID_V3(WP_Veto_EB, WP_Veto_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_loose = configureVIDCutBasedEleID_V3(WP_Loose_EB, WP_Loose_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_medium = configureVIDCutBasedEleID_V3(WP_Medium_EB, WP_Medium_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_tight = configureVIDCutBasedEleID_V3(WP_Tight_EB, WP_Tight_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_veto = configureVIDCutBasedEleID_V4(WP_Veto_EB, WP_Veto_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_loose = configureVIDCutBasedEleID_V4(WP_Loose_EB, WP_Loose_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_medium = configureVIDCutBasedEleID_V4(WP_Medium_EB, WP_Medium_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_tight = configureVIDCutBasedEleID_V4(WP_Tight_EB, WP_Tight_EE, isoInputs)
 
 
 # The MD5 sum numbers below reflect the exact set of cut variables
