@@ -4,9 +4,9 @@ import FWCore.ParameterSet.Config as cms
 
 # Common functions and classes for ID definition are imported here:
 from RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_tools \
-    import ( EleWorkingPoint_V3,
+    import ( EleWorkingPoint_V4,
              IsolationCutInputs_V2,
-             configureVIDCutBasedEleID_V3 )
+             configureVIDCutBasedEleID_V4 )
 
 #
 # The ID cuts below are optimized IDs on Spring16 simulation with 80X-based production
@@ -27,7 +27,9 @@ WP_Veto_EB = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0128  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00523 , # dEtaInSeedCut
     dPhiInCut                      = 0.159   , # dPhiInCut
-    hOverECut                      = 0.247   , # hOverECut
+    hOverECut_C0                   = 0.05    , # hOverECut
+    hOverECut_CE                   = 1.12    ,
+    hOverECut_Cr                   = 0.0368  ,
     relCombIsolationWithEALowPtCut = 0.168   , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.168   , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.193   , # absEInverseMinusPInverseCut
@@ -40,7 +42,9 @@ WP_Veto_EE = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0445  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00984 , # dEtaInSeedCut
     dPhiInCut                      = 0.157   , # dPhiInCut
-    hOverECut                      = 0.0982   , # hOverECut
+    hOverECut_C0                   = 0.05    , # hOverECut
+    hOverECut_CE                   = 0.5     ,
+    hOverECut_Cr                   = 0.201   ,
     relCombIsolationWithEALowPtCut = 0.185   , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.185   , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0962   , # absEInverseMinusPInverseCut
@@ -55,7 +59,9 @@ WP_Loose_EB = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0105  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00387 , # dEtaInSeedCut
     dPhiInCut                      = 0.0716   , # dPhiInCut
-    hOverECut                      = 0.236   , # hOverECut
+    hOverECut_C0                   = 0.05    , # hOverECut
+    hOverECut_CE                   = 1.12    ,
+    hOverECut_Cr                   = 0.0368  ,
     relCombIsolationWithEALowPtCut = 0.133  , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.133  , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.129   , # absEInverseMinusPInverseCut
@@ -69,6 +75,9 @@ WP_Loose_EE = EleWorkingPoint_V3(
     dEtaInSeedCut                  = 0.0072 , # dEtaInSeedCut
     dPhiInCut                      = 0.147   , # dPhiInCut
     hOverECut                      = 0.0801   , # hOverECut
+    hOverECut_C0                   = 0.0414  , # hOverECut
+    hOverECut_CE                   = 0.5     ,
+    hOverECut_Cr                   = 0.201   ,
     relCombIsolationWithEALowPtCut = 0.146   , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.146   , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0875   , # absEInverseMinusPInverseCut
@@ -83,7 +92,9 @@ WP_Medium_EB = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0105, # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00365, # dEtaInSeedCut
     dPhiInCut                      = 0.0588  , # dPhiInCut
-    hOverECut                      = 0.0859  , # hOverECut
+    hOverECut_C0                   = 0.026   , # hOverECut
+    hOverECut_CE                   = 1.12    ,
+    hOverECut_Cr                   = 0.0368  ,
     relCombIsolationWithEALowPtCut = 0.0718 , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.0718 , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0327  , # absEInverseMinusPInverseCut
@@ -96,7 +107,9 @@ WP_Medium_EE = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0309  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00625 , # dEtaInSeedCut
     dPhiInCut                      = 0.0355  , # dPhiInCut
-    hOverECut                      = 0.0604  , # hOverECut
+    hOverECut_C0                   = 0.026    , # hOverECut
+    hOverECut_CE                   = 0.5     ,
+    hOverECut_Cr                   = 0.201   ,
     relCombIsolationWithEALowPtCut = 0.143  , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.143  , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0335   , # absEInverseMinusPInverseCut
@@ -111,7 +124,9 @@ WP_Tight_EB = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0104   , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00353   , # dEtaInSeedCut
     dPhiInCut                      = 0.0499    , # dPhiInCut
-    hOverECut                      = 0.0833    , # hOverECut
+    hOverECut_C0                   = 0.026   , # hOverECut
+    hOverECut_CE                   = 1.12    ,
+    hOverECut_Cr                   = 0.0368  ,
     relCombIsolationWithEALowPtCut = 0.0361    , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.0361    , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0278    , # absEInverseMinusPInverseCut
@@ -124,7 +139,9 @@ WP_Tight_EE = EleWorkingPoint_V3(
     full5x5_sigmaIEtaIEtaCut       = 0.0305  , # full5x5_sigmaIEtaIEtaCut
     dEtaInSeedCut                  = 0.00567 , # dEtaInSeedCut
     dPhiInCut                      = 0.0165  , # dPhiInCut
-    hOverECut                      = 0.0543  , # hOverECut
+    hOverECut_C0                   = 0.026   , # hOverECut
+    hOverECut_CE                   = 0.5     ,
+    hOverECut_Cr                   = 0.201   ,
     relCombIsolationWithEALowPtCut = 0.094  , # relCombIsolationWithEALowPtCut
     relCombIsolationWithEAHighPtCut= 0.094  , # relCombIsolationWithEAHighPtCut
     absEInverseMinusPInverseCut    = 0.0158 , # absEInverseMinusPInverseCut
@@ -143,10 +160,10 @@ isoInputs = IsolationCutInputs_V2(
 # Set up VID configuration for all cuts and working points
 #
 
-cutBasedElectronID_Fall17_92X_V1_Preliminary_veto = configureVIDCutBasedEleID_V3(WP_Veto_EB, WP_Veto_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_loose = configureVIDCutBasedEleID_V3(WP_Loose_EB, WP_Loose_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_medium = configureVIDCutBasedEleID_V3(WP_Medium_EB, WP_Medium_EE, isoInputs)
-cutBasedElectronID_Fall17_92X_V1_Preliminary_tight = configureVIDCutBasedEleID_V3(WP_Tight_EB, WP_Tight_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_veto = configureVIDCutBasedEleID_V4(WP_Veto_EB, WP_Veto_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_loose = configureVIDCutBasedEleID_V4(WP_Loose_EB, WP_Loose_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_medium = configureVIDCutBasedEleID_V4(WP_Medium_EB, WP_Medium_EE, isoInputs)
+cutBasedElectronID_Fall17_92X_V1_Preliminary_tight = configureVIDCutBasedEleID_V4(WP_Tight_EB, WP_Tight_EE, isoInputs)
 
 
 # The MD5 sum numbers below reflect the exact set of cut variables
