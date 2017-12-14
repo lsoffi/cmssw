@@ -1,7 +1,6 @@
 
 import FWCore.ParameterSet.Config as cms
 
-        barrelC0 = cms.double( wpEB.hOverE_C0 ),
 # Barrel/endcap division in eta
 ebCutOff = 1.479
 
