@@ -271,7 +271,7 @@ def psetHadronicOverEMEnergyScaledCut(wpEB, wpEE):
         endcapCE = cms.double( wpEE.hOverE_CE ),
         endcapCr = cms.double( wpEE.hOverE_Cr ),
         barrelCutOff = cms.double(ebCutOff),
-        needsAdditionalProducts = cms.bool(False),
+        needsAdditionalProducts = cms.bool(True),
         isIgnored = cms.bool(False)
         )
 
