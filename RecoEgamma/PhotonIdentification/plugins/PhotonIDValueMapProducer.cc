@@ -240,7 +240,7 @@ PhotonIDValueMapProducer::PhotonIDValueMapProducer(const edm::ParameterSet& iCon
   produces<edm::ValueMap<float> >(phoAlpha_);
 }
 
-PhotonIDValueMapProducer::~PhotonIDValueMapProducer() {
+PhotonIDValueMapProducer::~PhotonIDValueMapProducer()  {
 }
 
 void PhotonIDValueMapProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
@@ -386,12 +386,21 @@ void PhotonIDValueMapProducer::produce(edm::Event& iEvent, const edm::EventSetup
     //compute cluster shapes 2nd moments: smaj and smin
     const bool isEB = (theseed.seed().subdetId() == EcalBarrel); // which subdet
     const EcalRecHitCollection* rechits = ( isEB ) ? rechitsEB_.product() : rechitsEE_.product() ;
-    Cluster2ndMoments ph2ndMoments =  EcalClusterTools::cluster2ndMoments(theseed,*rechits);
-    std::cout<< "smaj: "<< ph2ndMoments.sMaj<<std::endl;
-    phoSmaj.push_back(ph2ndMoments.sMaj);
-    phoSmin.push_back(ph2ndMoments.sMin);
-    phoAlpha.push_back(ph2ndMoments.alpha);
-  
+    
+    if (rechits->size() > 0)
+      {
+	Cluster2ndMoments ph2ndMoments =  EcalClusterTools::cluster2ndMoments(theseed,*rechits);
+	//	std::cout<< "smaj: "<< ph2ndMoments.sMaj<<std::endl;
+	phoSmaj.push_back(ph2ndMoments.sMaj);
+	phoSmin.push_back(ph2ndMoments.sMin);
+	phoAlpha.push_back(ph2ndMoments.alpha);
+      }else{
+      //      std::cout<< "smaj: "<< 999<<std::endl;
+      phoSmaj.push_back(999.);
+      phoSmin.push_back(999.);
+      phoAlpha.push_back(999.);
+
+    }
 	
     // 
     // Compute absolute uncorrected isolations with footprint removal

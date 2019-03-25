@@ -6,7 +6,10 @@ import FWCore.ParameterSet.Config as cms
 from RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_tools \
     import ( WorkingPoint_OOT_V1,
              IsolationCutInputsOOT,
-             configureVIDCutBasedPhoID_OOT_V1 )             
+             configureVIDCutBasedPhoID_OOT_V1,
+             configureVIDCutBasedPhoID_OOT_V2,
+             configureVIDCutBasedPhoID_OOT_V3,
+             configureVIDCutBasedPhoID_OOT_V4)             
 
 #
 # This is the first version of Spring16 cuts for 80X samples
@@ -28,60 +31,222 @@ WP_Loose_EB = WorkingPoint_OOT_V1(
     idName    ,  # idName
     0.0185    ,  # hOverECut
     0.0125   ,  # full5x5_SigmaIEtaIEtaCut
-# Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3
+    1.0,  #smaj
+    1.0,  #smaj
+    1.0,  #smaj
+    1.0,  #smaj
     1.0,  #smaj
     8.5     ,  # trkIso_C1
     0.0009         ,  # trkIso_C2
     12.    ,  # HCalIso_C1
     0.0052    ,  # HCalIso_C2
+    0.0052    ,  # HCalIso_C3
     8.     ,  # ECalIso_C1
     0.00092       # ECalIso_C2
     )
 WP_Loose_EE = WorkingPoint_OOT_V1( #assuming now same cuts in EE since OOT are only in EB for 2017 
-   idName    ,  # idName                                                                                                                                                                                                                                                     
-   0.0185    ,  # hOverECut                                                                                                                                                                                                                                                  
-   0.0125   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                                                                                                    
-   # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                                                                                          
-   1.0, #smaj
-   8.5     ,  # trkIso_C1                                                                                                                                                                                                                                                    
-   0.0009         ,  # trkIso_C2                                                                                                                                                                                                                                             
-   12.    ,  # HCalIso_C1                                                                                                                                                                                                                                                     
-   0.0052    ,  # HCalIso_C2                                                                                                                                                                                                                                                 
-   8.     ,  # ECalIso_C1                                                                                                                                                                                                                                                    
-   0.00092       # ECalIso_C2                                                                                                                                                                                                                                                
+    idName    ,  # idName                                                                                                                                                                              
+    0.0185    ,  # hOverECut                                                                                                                                                                           
+    0.0125   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                               
+    1.0, #smaj
+    1.0, #smaj
+    1.0, #smaj
+    1.0, #smaj
+    1.0, #smaj
+    8.5     ,  # trkIso_C1                                                                                                                                                                               
+    0.0009         ,  # trkIso_C2                                                                                                                                                            
+    12.    ,  # HCalIso_C1                                            
+    0.0052    ,  # HCalIso_C2                                                                                                                                                                           
+    0.0052    ,  # HCalIso_C3                                                                                                                                                                           
+    8.     ,  # ECalIso_C1                                                                                                                                                                              
+    0.00092       # ECalIso_C2                                                                                                                                                                                                                                                
    )
 
 # Tight working point Barrel and Endcap
 idName = "cutBasedPhotonID-Fall17-94X-OOT-V1-tight"
 WP_Tight_EB = WorkingPoint_OOT_V1(
-    idName    ,  # idName                                                                                                                                                                                                                                                    
-    0.0165    ,  # hOverECut                                                                                                                                                                                                                                                 
-    0.011   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                                                                                                   #
-    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                                                                                        
-    0.8,    #smaj
-    5.5     ,  # trkIso_C1                                                                                                                                                                                                                                                   
-    0.0009         ,  # trkIso_C2                                                                                                                                                                                                                                            
-    10.    ,  # HCalIso_C1                                                                                                                                                                                                                                                   
-    0.0052    ,  # HCalIso_C2                                                                                                                                                                                                                                                
-    5.     ,  # ECalIso_C1                                                                                                                                                                                                                                                   
-    0.00092       # ECalIso_C2                                                                                                                                                                                                                                             
-   
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
 )
 
 WP_Tight_EE = WorkingPoint_OOT_V1(
-    idName    ,  # idName                                                                                                                                                                                                                                                    
-    0.0165    ,  # hOverECut                                                                                                                                                                                                                                                 
-    0.011   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                                                                                                   #
-    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                                                                                         
-    0.8 , #smaj
-    5.5     ,  # trkIso_C1                                                                                                                                                                                                                                                   
-    0.0009         ,  # trkIso_C2                                                                                                                                                                                                                                            
-    10.    ,  # HCalIso_C1                                                                                                                                                                                                                                                   
-    0.0052    ,  # HCalIso_C2                                                                                                                                                                                                                                                
-    5.     ,  # ECalIso_C1                                                                                                                                                                                                                                                   
-    0.00092       # ECalIso_C2                                                                                                                                                                                                                                             
+      
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
 
-   )
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+
+
+# Tight working point Barrel and Endcap Only Isos
+idName = "cutBasedPhotonID-Fall17-94X-OOT-V1-tight-OnlyIsos"
+WP_Tight_OnlyIsos_EB = WorkingPoint_OOT_V1(
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+WP_Tight_OnlyIsos_EE = WorkingPoint_OOT_V1(
+      
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+
+
+# Tight working point Barrel and Endcap NoSmaj
+idName = "cutBasedPhotonID-Fall17-94X-OOT-V1-tight-NoSmaj"
+WP_Tight_NoSmaj_EB = WorkingPoint_OOT_V1(
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+WP_Tight_NoSmaj_EE = WorkingPoint_OOT_V1(
+      
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+# Tight working point Barrel and Endcap OnlySmaj
+idName = "cutBasedPhotonID-Fall17-94X-OOT-V1-tight-OnlySmaj"
+WP_Tight_OnlySmaj_EB = WorkingPoint_OOT_V1(
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+WP_Tight_OnlySmaj_EE = WorkingPoint_OOT_V1(
+      
+    idName    ,  # idName                                                                                                                                                                               
+    0.02148    ,  # hOverECut                                                                                                                                                                           
+    0.00996   ,  # full5x5_SigmaIEtaIEtaCut                                                                                                                                                              
+    # Isolation cuts are generally absIso < C1 + pt*C2, except for NeuHad is < C1 + pt*C2 + pt*pt*C3                                                                                                     
+    #smaj<C1+(abs(eta)-0.8)*C2+C3*exp(C4*pt+C5)
+
+    0.35,    #smaj_C1
+    0.311,    #smaj_C2
+    0.1465,    #smaj_C3
+    -0.01775,    #smaj_C4
+    1.948,    #smaj_C5
+    4.0     ,  # trkIso_C1                                                                                                                                                                               
+    0.0         ,  # trkIso_C2                                                                                                                                                                           
+    4.    ,  # HCalIso_C1                                                                                                                                                                                
+    -0.005802    ,  # HCalIso_C2                                                                                                                                                                         
+    2.921e-5    ,  # HCalIso_C3                                                                                                                                                                          
+    5.     ,  # ECalIso_C1                                                                                                                                                                               
+    0.003008       # ECalIso_C2                                                                                                                                                                          
+)
+
+
 
 
 # Second, define where to find the precomputed isolations and what effective
@@ -107,6 +272,9 @@ isoInputs = IsolationCutInputsOOT(
 #
 cutBasedPhotonID_Fall17_94X_OOT_V1_loose  = configureVIDCutBasedPhoID_OOT_V1 ( WP_Loose_EB, WP_Loose_EE, isoInputs)
 cutBasedPhotonID_Fall17_94X_OOT_V1_tight  = configureVIDCutBasedPhoID_OOT_V1 ( WP_Tight_EB, WP_Tight_EE, isoInputs)
+cutBasedPhotonID_Fall17_94X_OOT_V1_tight_OnlyIsos  = configureVIDCutBasedPhoID_OOT_V2 ( WP_Tight_OnlyIsos_EB, WP_Tight_OnlyIsos_EE, isoInputs)
+cutBasedPhotonID_Fall17_94X_OOT_V1_tight_NoSmaj  = configureVIDCutBasedPhoID_OOT_V3 ( WP_Tight_NoSmaj_EB, WP_Tight_NoSmaj_EE, isoInputs)
+cutBasedPhotonID_Fall17_94X_OOT_V1_tight_OnlySmaj  = configureVIDCutBasedPhoID_OOT_V4 ( WP_Tight_OnlySmaj_EB, WP_Tight_OnlySmaj_EE, isoInputs)
 
 ## The MD5 sum numbers below reflect the exact set of cut variables
 # and values above. If anything changes, one has to 
