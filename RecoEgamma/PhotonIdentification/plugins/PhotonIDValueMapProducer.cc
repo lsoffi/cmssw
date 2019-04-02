@@ -387,6 +387,7 @@ void PhotonIDValueMapProducer::produce(edm::Event& iEvent, const edm::EventSetup
     const bool isEB = (theseed.seed().subdetId() == EcalBarrel); // which subdet
     const EcalRecHitCollection* rechits = ( isEB ) ? rechitsEB_.product() : rechitsEE_.product() ;
     
+    //    std::cout<<" # rechits: "<<rechits->size()<<std::endl;
     if (rechits->size() > 0)
       {
 	Cluster2ndMoments ph2ndMoments =  EcalClusterTools::cluster2ndMoments(theseed,*rechits);
@@ -394,6 +395,7 @@ void PhotonIDValueMapProducer::produce(edm::Event& iEvent, const edm::EventSetup
 	phoSmaj.push_back(ph2ndMoments.sMaj);
 	phoSmin.push_back(ph2ndMoments.sMin);
 	phoAlpha.push_back(ph2ndMoments.alpha);
+	//	std::cout<<"smaj: "<<ph2ndMoments.sMaj<<std::endl;
       }else{
       //      std::cout<< "smaj: "<< 999<<std::endl;
       phoSmaj.push_back(999.);
@@ -402,6 +404,7 @@ void PhotonIDValueMapProducer::produce(edm::Event& iEvent, const edm::EventSetup
 
     }
 	
+
     // 
     // Compute absolute uncorrected isolations with footprint removal
     //

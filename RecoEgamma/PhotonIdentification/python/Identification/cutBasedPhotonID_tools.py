@@ -1,4 +1,4 @@
-
+ 
 import FWCore.ParameterSet.Config as cms
 
 # Barrel/endcap division in eta
@@ -35,6 +35,8 @@ class WorkingPoint_V1:
         self.absPFPhoIsoWithEACut_C1     = absPFPhoIsoWithEACut_C1    # photon isolation C1
         self.absPFPhoIsoWithEACut_C2     = absPFPhoIsoWithEACut_C2    # ........ C2
 
+
+
 class WorkingPoint_V2:
     """
     This is a container class to hold numerical cut values for either
@@ -58,6 +60,41 @@ class WorkingPoint_V2:
                  absPFPhoIsoWithEACut_C2
                  ):
         self.idName    = idName
+        self.hOverECut = hOverECut
+        self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
+        self.absPFChaHadIsoWithEACut_C1  = absPFChaHadIsoWithEACut_C1 # charged hadron isolation C1
+        self.absPFChaHadIsoWithEACut_C2  = absPFChaHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C1  = absPFNeuHadIsoWithEACut_C1 # neutral hadron isolation C1
+        self.absPFNeuHadIsoWithEACut_C2  = absPFNeuHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C3  = absPFNeuHadIsoWithEACut_C3 # ........ C3
+        self.absPFPhoIsoWithEACut_C1     = absPFPhoIsoWithEACut_C1    # photon isolation C1
+        self.absPFPhoIsoWithEACut_C2     = absPFPhoIsoWithEACut_C2    # ........ C2
+
+class WorkingPoint_HPT_V1:
+    """
+    This is a container class to hold numerical cut values for either
+    the barrel or endcap set of cuts
+    This version of the container is different from the previous one
+    by the fact that it contains three constants instead of two for
+    the neutral hadron isolation cut, for exponantial parameterization
+    """
+    def __init__(self, 
+                 idName,
+                 r9Cut,
+                 hOverECut,
+                 full5x5_sigmaIEtaIEtaCut,
+                 # Isolation cuts are generally pt-dependent: cut = C1 + pt * C2
+                 # except for the neutral hadron isolation where it is cut = C1+exp(pt*C2+C3)
+                 absPFChaHadIsoWithEACut_C1,
+                 absPFChaHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C1,
+                 absPFNeuHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C3,
+                 absPFPhoIsoWithEACut_C1,
+                 absPFPhoIsoWithEACut_C2
+                 ):
+        self.idName    = idName
+        self.r9Cut=r9Cut
         self.hOverECut = hOverECut
         self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
         self.absPFChaHadIsoWithEACut_C1  = absPFChaHadIsoWithEACut_C1 # charged hadron isolation C1
@@ -111,6 +148,157 @@ class WorkingPoint_OOT_V1:
         self.absPFClusterHCalIsoWithEACut_C3  = absPFClusterHCalIsoWithEACut_C3 # ........ C3
         self.absPFClusterECalIsoWithEACut_C1  = absPFClusterECalIsoWithEACut_C1 # pf cluster ecal isolation C1
         self.absPFClusterECalIsoWithEACut_C2  = absPFClusterECalIsoWithEACut_C2 # ........ C2
+
+
+class WorkingPoint_OOT_V2:
+    """
+    This is a container class to hold numerical cut values for either
+    the barrel or endcap set of cuts
+    This version of the container is different from the previous one
+    by the fact that it contains three constants instead of two for
+    the neutral hadron isolation cut, for exponantial parameterization
+    """
+    def __init__(self, 
+                 idName,
+                 hOverECut,
+                 full5x5_sigmaIEtaIEtaCut,
+                 smajCut_C1,
+                 # Isolation cuts are generally pt-dependent: cut = C1 + pt * C2
+                 # except for the neutral hadron isolation where it is cut = C1+exp(pt*C2+C3)
+                 absTrkIsoWithEACut_C1,
+                 absTrkIsoWithEACut_C2,
+                 absPFClusterHCalIsoWithEACut_C1,
+                 absPFClusterHCalIsoWithEACut_C2,
+                 absPFClusterHCalIsoWithEACut_C3,
+                 absPFClusterECalIsoWithEACut_C1,
+                 absPFClusterECalIsoWithEACut_C2,
+                 ):
+        self.idName    = idName
+        self.hOverECut = hOverECut
+        self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
+        self.smajCut = smajCut_C1
+        self.absTrkIsoWithEACut_C1  = absTrkIsoWithEACut_C1# trk isolation C1
+        self.absTrkIsoWithEACut_C2  = absTrkIsoWithEACut_C2 # ........ C2
+             
+        self.absPFClusterHCalIsoWithEACut_C1  = absPFClusterHCalIsoWithEACut_C1 # pf cluster hcal isolation C1
+        self.absPFClusterHCalIsoWithEACut_C2  = absPFClusterHCalIsoWithEACut_C2 # ........ C2
+        self.absPFClusterHCalIsoWithEACut_C3  = absPFClusterHCalIsoWithEACut_C3 # ........ C3
+        self.absPFClusterECalIsoWithEACut_C1  = absPFClusterECalIsoWithEACut_C1 # pf cluster ecal isolation C1
+        self.absPFClusterECalIsoWithEACut_C2  = absPFClusterECalIsoWithEACut_C2 # ........ C2
+
+
+class WorkingPoint_OOT_V3:
+    """
+    This is a container class to hold numerical cut values for either
+    the barrel or endcap set of cuts
+    This version of the container is different from the previous one
+    by the fact that it contains three constants instead of two for
+    the neutral hadron isolation cut, for exponantial parameterization
+    """
+    def __init__(self, 
+                 idName,
+                 hOverECut,
+                 full5x5_sigmaIEtaIEtaCut,
+                 smajCut_C1,
+                 # Isolation cuts are generally pt-dependent: cut = C1 + pt * C2
+                 # except for the neutral hadron isolation where it is cut = C1+exp(pt*C2+C3)
+                 absPFChaHadIsoWithEACut_C1,
+                 absPFChaHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C1,
+                 absPFNeuHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C3,
+                 absPFPhoIsoWithEACut_C1,
+                 absPFPhoIsoWithEACut_C2
+                 ):
+        self.idName    = idName
+        self.hOverECut = hOverECut
+        self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
+        self.smajCut = smajCut_C1
+        self.absPFChaHadIsoWithEACut_C1  = absPFChaHadIsoWithEACut_C1 # charged hadron isolation C1
+        self.absPFChaHadIsoWithEACut_C2  = absPFChaHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C1  = absPFNeuHadIsoWithEACut_C1 # neutral hadron isolation C1
+        self.absPFNeuHadIsoWithEACut_C2  = absPFNeuHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C3  = absPFNeuHadIsoWithEACut_C3 # ........ C3
+        self.absPFPhoIsoWithEACut_C1     = absPFPhoIsoWithEACut_C1    # photon isolation C1
+        self.absPFPhoIsoWithEACut_C2     = absPFPhoIsoWithEACut_C2    # ........ C2
+
+
+class WorkingPoint_OOT_V4:
+    """
+    This is a container class to hold numerical cut values for either
+    the barrel or endcap set of cuts
+    This version of the container is different from the previous one
+    by the fact that it contains three constants instead of two for
+    the neutral hadron isolation cut, for exponantial parameterization
+    """
+    def __init__(self, 
+                 idName,
+                 hOverECut,
+                 full5x5_sigmaIEtaIEtaCut,
+                 smajCut_C1,
+                 sminCut_C1,
+                 # Isolation cuts are generally pt-dependent: cut = C1 + pt * C2
+                 # except for the neutral hadron isolation where it is cut = C1+exp(pt*C2+C3)
+                 absTrkIsoWithEACut_C1,
+                 absTrkIsoWithEACut_C2,
+                 absPFClusterHCalIsoWithEACut_C1,
+                 absPFClusterHCalIsoWithEACut_C2,
+                 absPFClusterHCalIsoWithEACut_C3,
+                 absPFClusterECalIsoWithEACut_C1,
+                 absPFClusterECalIsoWithEACut_C2,
+                 ):
+        self.idName    = idName
+        self.hOverECut = hOverECut
+        self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
+        self.smajCut = smajCut_C1
+        self.sminCut = sminCut_C1
+        self.absTrkIsoWithEACut_C1  = absTrkIsoWithEACut_C1# trk isolation C1
+        self.absTrkIsoWithEACut_C2  = absTrkIsoWithEACut_C2 # ........ C2
+             
+        self.absPFClusterHCalIsoWithEACut_C1  = absPFClusterHCalIsoWithEACut_C1 # pf cluster hcal isolation C1
+        self.absPFClusterHCalIsoWithEACut_C2  = absPFClusterHCalIsoWithEACut_C2 # ........ C2
+        self.absPFClusterHCalIsoWithEACut_C3  = absPFClusterHCalIsoWithEACut_C3 # ........ C3
+        self.absPFClusterECalIsoWithEACut_C1  = absPFClusterECalIsoWithEACut_C1 # pf cluster ecal isolation C1
+        self.absPFClusterECalIsoWithEACut_C2  = absPFClusterECalIsoWithEACut_C2 # ........ C2
+
+
+class WorkingPoint_OOT_V5:
+    """
+    This is a container class to hold numerical cut values for either
+    the barrel or endcap set of cuts
+    This version of the container is different from the previous one
+    by the fact that it contains three constants instead of two for
+    the neutral hadron isolation cut, for exponantial parameterization
+    """
+    def __init__(self, 
+                 idName,
+                 hOverECut,
+                 full5x5_sigmaIEtaIEtaCut,
+                 smajCut_C1,
+                 sminCut_C1,
+                 # Isolation cuts are generally pt-dependent: cut = C1 + pt * C2
+                 # except for the neutral hadron isolation where it is cut = C1+exp(pt*C2+C3)
+                 absPFChaHadIsoWithEACut_C1,
+                 absPFChaHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C1,
+                 absPFNeuHadIsoWithEACut_C2,
+                 absPFNeuHadIsoWithEACut_C3,
+                 absPFPhoIsoWithEACut_C1,
+                 absPFPhoIsoWithEACut_C2
+                 ):
+        self.idName    = idName
+        self.hOverECut = hOverECut
+        self.full5x5_sigmaIEtaIEtaCut = full5x5_sigmaIEtaIEtaCut
+        self.smajCut = smajCut_C1
+        self.sminCut = sminCut_C1
+        self.absPFChaHadIsoWithEACut_C1  = absPFChaHadIsoWithEACut_C1 # charged hadron isolation C1
+        self.absPFChaHadIsoWithEACut_C2  = absPFChaHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C1  = absPFNeuHadIsoWithEACut_C1 # neutral hadron isolation C1
+        self.absPFNeuHadIsoWithEACut_C2  = absPFNeuHadIsoWithEACut_C2 # ........ C2
+        self.absPFNeuHadIsoWithEACut_C3  = absPFNeuHadIsoWithEACut_C3 # ........ C3
+        self.absPFPhoIsoWithEACut_C1     = absPFPhoIsoWithEACut_C1    # photon isolation C1
+        self.absPFPhoIsoWithEACut_C2     = absPFPhoIsoWithEACut_C2    # ........ C2
+
 
 class IsolationCutInputs:
     """
@@ -213,6 +401,24 @@ def psetPhoFull5x5SigmaIEtaIEtaValueMapCut(wpEB, wpEE):
         isIgnored = cms.bool(False)
         )
 
+
+
+# Configure the cut on R9,
+# relying on an upstream producer that creates it. This was necessary
+# for photons up to 7.2.0.
+def psetPhoR9Cut(wpEB, wpEE):
+    """
+    Arguments: two containers of working point cut values of the type WorkingPoint_*
+    """
+    return cms.PSet( 
+        cutName = cms.string('PhoR9Cut'),
+        cutValueEB = cms.double( wpEB.r9Cut ),
+        cutValueEE = cms.double( wpEE.r9Cut ),
+        barrelCutOff = cms.double(ebCutOff),
+        needsAdditionalProducts = cms.bool(False),
+        isIgnored = cms.bool(False)
+        )
+
 # Configure the cut on full5x5 sigmaIEtaIEta that uses the native Photon field
 # with this variable (works for releases past 7.2.0).
 def psetPhoFull5x5SigmaIEtaIEtaCut(wpEB, wpEE):
@@ -239,6 +445,22 @@ def psetPhoSMajCut(wpEB, wpEE,isoInputs):
         C1_EE = cms.double( wpEE.smajCut ),
         C2_EE = cms.double( wpEE.smajCut ),
         sMajMap = cms.InputTag( 'photonIDValueMapProducer:phoSmaj'),#isoInputs.PFClusterECalIsolationMapName ),
+        barrelCutOff = cms.double(ebCutOff),
+        useRelativeIso = cms.bool(False),
+        needsAdditionalProducts = cms.bool(True),
+        isIgnored = cms.bool(False),
+        )
+#Configure Cut on Sminf
+def psetPhoSMinCut(wpEB, wpEE,isoInputs):
+
+    return cms.PSet( 
+        cutName = cms.string('PhoSMinCut'), 
+        # Both barrel and endcap: cut = c1 + pt*c2
+        C1_EB = cms.double( wpEB.sminCut ),
+        C2_EB = cms.double( wpEB.sminCut ),
+        C1_EE = cms.double( wpEE.sminCut ),
+        C2_EE = cms.double( wpEE.sminCut ),
+        sMinMap = cms.InputTag( 'photonIDValueMapProducer:phoSmin'),#isoInputs.PFClusterECalIsolationMapName ),
         barrelCutOff = cms.double(ebCutOff),
         useRelativeIso = cms.bool(False),
         needsAdditionalProducts = cms.bool(True),
@@ -573,6 +795,37 @@ def configureVIDCutBasedPhoID_V2( wpEB, wpEE, isoInputs ):
     #
     return parameterSet
 
+
+
+def configureVIDCutBasedPhoID_HPT_V1( wpEB, wpEE, isoInputs ):
+    """
+    This function configures the full cms.PSet for a VID ID and returns it.
+    The inputs: first object is of the type WorkingPoint_V2, second object
+    is of the type WorkingPoint_V1, containing the cuts for the Barrel (EB) 
+    and the other one for the Endcap (EE).
+    The third argument contains data for isolation calculation.
+
+    The V2 with respect to V1 has one change: the neutral hadron isolation
+    cut has an exponential pt scaling for the barrel.
+    """
+    # print "VID: Configuring cut set %s" % wpEB.idName
+    parameterSet =  cms.PSet(
+        #
+        idName = cms.string( wpEB.idName ), # same name stored in the _EB and _EE objects
+        cutFlow = cms.VPSet( 
+            psetMinPtCut(),                                           # pt cut
+            psetPhoSCEtaMultiRangeCut(),                              # eta cut
+            psetPhoR9Cut(wpEB,wpEE),                                              # r9 cut
+            psetPhoSingleTowerHadOverEmCut(wpEB,wpEE),                # H/E cut
+            psetPhoFull5x5SigmaIEtaIEtaValueMapCut(wpEB,wpEE),        # full 5x5 sigmaIEtaIEta cut
+            psetChHadIsoWithEALinScalingCut(wpEB,wpEE,isoInputs),     # charged hadron isolation cut
+            psetNeuHadIsoWithEAExpoScalingEBCut(wpEB,wpEE,isoInputs), # neutral hadron isolation cut
+            psetPhoIsoWithEALinScalingCut(wpEB,wpEE,isoInputs)        # photon isolation cut
+            )
+        )
+    #
+    return parameterSet
+
 def configureVIDCutBasedPhoID_V3( wpEB, wpEE, isoInputs ):
     """
     This function configures the full cms.PSet for a VID ID and returns it.
@@ -730,4 +983,89 @@ def configureVIDCutBasedPhoID_OOT_V4( wpEB, wpEE, isoInputs ):
     #
     return parameterSet
 
+
+def configureVIDCutBasedPhoID_OOT_V5( wpEB, wpEE, isoInputs ):
+
+    parameterSet =  cms.PSet(
+        #
+        idName = cms.string( wpEB.idName ), # same name stored in the _EB and _EE objects
+        cutFlow = cms.VPSet( 
+            psetMinPtCut(),                                           # pt cut
+            psetPhoSCEtaMultiRangeCut(),                              # eta cut
+            psetPhoSingleTowerHadOverEmCut(wpEB,wpEE),                # H/E cut
+            psetPhoFull5x5SigmaIEtaIEtaCut(wpEB,wpEE),                # full 5x5 sigmaIEtaIEta cut
+            psetPhoSMajCut(wpEB,wpEE,isoInputs),
+            psetTrkIsoWithEALinScalingCut(wpEB,wpEE,isoInputs),     # charged hadron isolation cut
+            psetPFClusterHCalIsoEAQuadScalingCut(wpEB,wpEE,isoInputs),   # neutral hadron isolation cut
+            psetPFClusterECalIsoWithEALinScalingCut(wpEB,wpEE,isoInputs)        # photon isolation cut
+            )
+        )
+    #
+    return parameterSet
+
+
+
+def configureVIDCutBasedPhoID_GED_V6( wpEB, wpEE, isoInputs ):
+
+    parameterSet =  cms.PSet(
+        #
+        idName = cms.string( wpEB.idName ), # same name stored in the _EB and _EE objects
+        cutFlow = cms.VPSet( 
+            psetMinPtCut(),                                           # pt cut
+            psetPhoSCEtaMultiRangeCut(),                              # eta cut
+            psetPhoSingleTowerHadOverEmCut(wpEB,wpEE),                # H/E cut
+            psetPhoFull5x5SigmaIEtaIEtaCut(wpEB,wpEE),                # full 5x5 sigmaIEtaIEta cut
+            psetPhoSMajCut(wpEB,wpEE,isoInputs),
+            psetChHadIsoWithEALinScalingCut(wpEB,wpEE,isoInputs),     # charged hadron isolation cut
+            psetNeuHadIsoWithEAQuadScalingCut(wpEB,wpEE,isoInputs),   # neutral hadron isolation cut
+            psetPhoIsoWithEALinScalingCut(wpEB,wpEE,isoInputs)        # photon isolation cut
+            )
+        )
+    #
+    return parameterSet
+
+
+
+
+def configureVIDCutBasedPhoID_OOT_V7( wpEB, wpEE, isoInputs ):
+
+    parameterSet =  cms.PSet(
+        #
+        idName = cms.string( wpEB.idName ), # same name stored in the _EB and _EE objects
+        cutFlow = cms.VPSet( 
+            psetMinPtCut(),                                           # pt cut
+            psetPhoSCEtaMultiRangeCut(),                              # eta cut
+            psetPhoSingleTowerHadOverEmCut(wpEB,wpEE),                # H/E cut
+            psetPhoFull5x5SigmaIEtaIEtaCut(wpEB,wpEE),                # full 5x5 sigmaIEtaIEta cut
+            psetPhoSMajCut(wpEB,wpEE,isoInputs),
+            psetPhoSMinCut(wpEB,wpEE,isoInputs),
+            psetTrkIsoWithEALinScalingCut(wpEB,wpEE,isoInputs),     # charged hadron isolation cut
+            psetPFClusterHCalIsoEAQuadScalingCut(wpEB,wpEE,isoInputs),   # neutral hadron isolation cut
+            psetPFClusterECalIsoWithEALinScalingCut(wpEB,wpEE,isoInputs)        # photon isolation cut
+            )
+        )
+    #
+    return parameterSet
+
+
+
+def configureVIDCutBasedPhoID_GED_V8( wpEB, wpEE, isoInputs ):
+
+    parameterSet =  cms.PSet(
+        #
+        idName = cms.string( wpEB.idName ), # same name stored in the _EB and _EE objects
+        cutFlow = cms.VPSet( 
+            psetMinPtCut(),                                           # pt cut
+            psetPhoSCEtaMultiRangeCut(),                              # eta cut
+            psetPhoSingleTowerHadOverEmCut(wpEB,wpEE),                # H/E cut
+            psetPhoFull5x5SigmaIEtaIEtaCut(wpEB,wpEE),                # full 5x5 sigmaIEtaIEta cut
+            psetPhoSMajCut(wpEB,wpEE,isoInputs),
+            psetPhoSMinCut(wpEB,wpEE,isoInputs),
+            psetChHadIsoWithEALinScalingCut(wpEB,wpEE,isoInputs),     # charged hadron isolation cut
+            psetNeuHadIsoWithEAQuadScalingCut(wpEB,wpEE,isoInputs),   # neutral hadron isolation cut
+            psetPhoIsoWithEALinScalingCut(wpEB,wpEE,isoInputs)        # photon isolation cut
+            )
+        )
+    #
+    return parameterSet
 
